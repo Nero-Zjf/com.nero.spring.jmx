@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="book" class="com.nero.spring.jmx.Book">
+        <!--通过bean的构造器方法注入依赖-->
+        <constructor-arg name="name" value="水浒"/>
+    </bean>
+    <!--<bean class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">-->
+        <!--<property name="port" value="8081"/>-->
+    <!--</bean>-->
+    <!--<bean class="org.springframework.jmx.support.ConnectorServerFactoryBean">-->
+        <!--<property name="serviceUrl" value="service:jmx:rmi:///jndi/rmi://10.211.55.2:8081/book1"/>-->
+    <!--</bean>-->
+    <bean class="org.springframework.jmx.export.MBeanExporter">
+        <property name="beans">
+            <map>
+                <entry key="bean:name=book1" value-ref="book"/>
+            </map>
+        </property>
+    </bean>
+</beans>
